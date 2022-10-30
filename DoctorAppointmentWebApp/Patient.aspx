@@ -12,5 +12,7 @@
 
     </asp:GridView>
    
+    <asp:LinkButton ID="lnkNewPatient" Text="Create" CssClass="btn btn-primary" PostBackUrl="~/CreatePatient.aspx" runat="server" OnClick="lnkNewPatient_Click">
 
+    </asp:LinkButton>
 </asp:Content>

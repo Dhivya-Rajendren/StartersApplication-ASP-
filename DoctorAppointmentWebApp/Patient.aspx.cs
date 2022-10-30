@@ -10,19 +10,21 @@ namespace DoctorAppointmentWebApp
 {
     public partial class _Patient : System.Web.UI.Page
     {
+        static List<Patient> patients = new List<Patient>();
       
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            List<int> numbers = new List<int>();// List of integers
-            numbers.Add(1);
-            numbers.Add(2);
+            //List<int> numbers = new List<int>();// List of integers
+            //numbers.Add(1);
+            //numbers.Add(2);
 
-            List<string> names = new List<string>();//List of strings
-            names.Add("Kishore");
-            names.Add("Aabha");
+            //List<string> names = new List<string>();//List of strings
+            //names.Add("Kishore");
+            //names.Add("Aabha");
 
-            List<Patient> patients = new List<Patient>();// List of patients or I can call it as List of patient objects.
+      
+             patients = new List<Patient>();// List of patients or I can call it as List of patient objects.
             Patient patient = new Patient();
             patient.PatientId = 1;
             patient.PatientName = "Jacob";
@@ -37,10 +39,21 @@ namespace DoctorAppointmentWebApp
             p1.Contact = 45127896;
             p1.PatientHistory = "Patient with Cold and Cough";
             patients.Add(p1);
+            Patient newPatient = (Patient)Session["NewPatient"];
+            if (newPatient != null)
+            {
+                patients.Add(newPatient);
+            }
 
-            grvPatients.DataSource = patients;
+
+                grvPatients.DataSource = patients;
             grvPatients.DataBind();
 
+
+        }
+
+        protected void lnkNewPatient_Click(object sender, EventArgs e)
+        {
 
         }
     }
