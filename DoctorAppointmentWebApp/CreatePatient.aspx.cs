@@ -23,8 +23,19 @@ namespace DoctorAppointmentWebApp
             newPatient.Email = txtEmail.Text;
             newPatient.Contact =Convert.ToInt64( txtContact.Text);
             newPatient.PatientHistory=txtPatientHistory.Text;
-            Session["NewPatient"] = newPatient;//Key-valu pair data
+            DbHelper db = new DbHelper();
+           if(db.AddNewPatient(newPatient)>0)
+            { 
             Response.Redirect("Patient.aspx");
+                }
+        }
+
+        protected void cvPatientName_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (txtPatientName.Text.Length<3)
+            {
+                 args.IsValid = false;
+            }
         }
     }
 }

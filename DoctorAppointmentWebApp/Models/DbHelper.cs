@@ -46,5 +46,19 @@ namespace DoctorAppointmentWebApp.Models
 
         }
 
+        public int AddNewPatient(Patient patient)
+        {
+
+            if (con.State == System.Data.ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            com = new SqlCommand("insert into Patient values('" + patient.PatientName + "','" + patient.Email + "'," + patient.Contact + ",'" + patient.PatientHistory + "')", con);
+            int rows= com.ExecuteNonQuery();
+
+            con.Close();
+            return rows;
+
+        }
     }
 }
