@@ -11,9 +11,9 @@
         <tr>
             <td><asp:Label ID="lblPatientName" Text="Patient Name" CssClass="text-primary" runat="server"/> </td>
             <td><asp:TextBox ID="txtPatientName" runat="server" CssClass="form-control" />
-                <asp:RequiredFieldValidator ID="rfvPatientName" runat="server" ValidationGroup="grpCreate" ForeColor="OrangeRed" ErrorMessage ="Patient Name can't be Empty" ControlToValidate="txtPatientName" />
+<%--                <asp:RequiredFieldValidator ID="rfvPatientName" runat="server" ValidationGroup="grpCreate" ForeColor="OrangeRed" ErrorMessage ="Patient Name can't be Empty" ControlToValidate="txtPatientName" />--%>
           <asp:CustomValidator ValidationGroup="grpCreate" ID="cvPatientName" runat="server" OnServerValidate="cvPatientName_ServerValidate" 
-              ErrorMessage="The Length Should be Greater than 2" ControlToValidate="txtPatientName" />
+              ErrorMessage="The Length Should be Greater than 2" ControlToValidate="txtPatientName"  ForeColor="OrangeRed"/>
                 </td>
         </tr>
         <tr>

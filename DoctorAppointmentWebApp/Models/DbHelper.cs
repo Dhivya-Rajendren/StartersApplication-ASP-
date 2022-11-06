@@ -20,6 +20,18 @@ namespace DoctorAppointmentWebApp.Models
             con.Open();
         }
 
+        public int AddNewUser(User user)
+        {
+            if (con.State == System.Data.ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            com = new SqlCommand("insert into AppUsers values('"+user.UserName+"','"+user.Password+"','"+user.ConfirmPassword+"','"+user.Email+"','"+user.SQuestion+"','"+user.SAnswer+"')", con);
+            int rows = com.ExecuteNonQuery();
+
+            con.Close();
+            return rows;
+        }
         public List<Patient> GetAllPatients()
         {
             if (con.State==System.Data.ConnectionState.Closed)
@@ -59,6 +71,32 @@ namespace DoctorAppointmentWebApp.Models
             con.Close();
             return rows;
 
+        }
+    public int UpdatePatient(Patient patient)
+        {
+            if (con.State == System.Data.ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            com = new SqlCommand("update patient set contact="+patient.Contact +"where patientId="+patient.PatientId, con);
+            int rows = com.ExecuteNonQuery();
+
+            con.Close();
+            return rows;
+
+        }
+
+        public int DeletePatient(int patientId)
+        {
+            if (con.State == System.Data.ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            com = new SqlCommand(" Delete from patient where patientId=" + patientId, con);
+            int rows = com.ExecuteNonQuery();
+
+            con.Close();
+            return rows;
         }
     }
 }

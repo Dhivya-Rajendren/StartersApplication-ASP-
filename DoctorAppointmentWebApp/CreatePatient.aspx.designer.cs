@@ -33,15 +33,6 @@ namespace DoctorAppointmentWebApp
         protected global::System.Web.UI.WebControls.TextBox txtPatientName;
 
         /// <summary>
-        /// rfvPatientName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPatientName;
-
-        /// <summary>
         /// cvPatientName control.
         /// </summary>
         /// <remarks>

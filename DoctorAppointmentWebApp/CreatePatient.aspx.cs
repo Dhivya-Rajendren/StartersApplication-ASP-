@@ -17,22 +17,28 @@ namespace DoctorAppointmentWebApp
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            Patient newPatient = new Patient();
-            newPatient.PatientId = 10;
-            newPatient.PatientName = txtPatientName.Text;
-            newPatient.Email = txtEmail.Text;
-            newPatient.Contact =Convert.ToInt64( txtContact.Text);
-            newPatient.PatientHistory=txtPatientHistory.Text;
-            DbHelper db = new DbHelper();
-           if(db.AddNewPatient(newPatient)>0)
-            { 
-            Response.Redirect("Patient.aspx");
+            if (Page.IsValid)
+            {
+                Patient newPatient = new Patient();
+                newPatient.PatientId = 10;
+                newPatient.PatientName = txtPatientName.Text;
+                newPatient.Email = txtEmail.Text;
+                newPatient.Contact = Convert.ToInt64(txtContact.Text);
+                newPatient.PatientHistory = txtPatientHistory.Text;
+                DbHelper db = new DbHelper();
+                if (db.AddNewPatient(newPatient) > 0)
+                {
+                    Response.Redirect("Patient.aspx");
                 }
+
+            }
+           
+           
         }
 
         protected void cvPatientName_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            if (txtPatientName.Text.Length<3)
+            if (args.Value.Length<3)
             {
                  args.IsValid = false;
             }
