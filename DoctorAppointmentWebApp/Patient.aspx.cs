@@ -78,14 +78,16 @@ namespace DoctorAppointmentWebApp
 
         protected void grvPatients_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+           
             GridViewRow row = (GridViewRow)grvPatients.Rows[e.RowIndex];
             // Getting the first column which is having the patientId.
             Label patientId = row .FindControl("lblPatientId") as Label;
             DbHelper db = new DbHelper();
 
             int patientIdDelete=int.Parse(patientId.Text);
-            db.DeletePatient(patientIdDelete);
-            ShowDetails();
+            Response.Redirect("Confirm.aspx?patientId=" + patientIdDelete);
+            //
+            //ShowDetails();
         }
     }
 }
