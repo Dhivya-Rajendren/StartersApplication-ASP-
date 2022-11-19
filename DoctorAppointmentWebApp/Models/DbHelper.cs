@@ -20,17 +20,28 @@ namespace DoctorAppointmentWebApp.Models
             con.Open();
         }
 
-        public int AddNewUser(User user)
+        public int AddError(ErrorModel error)
+        {
+            return ExecuteDMLCommand("insert into tblAppErrors values('" + error.ErrorURL + "','" + error.ErrorMessage + "'," + error.StatusCode + ")");
+        }
+
+        public int ExecuteDMLCommand(string dmlCommand)
         {
             if (con.State == System.Data.ConnectionState.Closed)
             {
                 con.Open();
             }
-            com = new SqlCommand("insert into AppUsers values('"+user.UserName+"','"+user.Password+"','"+user.ConfirmPassword+"','"+user.Email+"','"+user.SQuestion+"','"+user.SAnswer+"')", con);
+            com = new SqlCommand(dmlCommand, con);
             int rows = com.ExecuteNonQuery();
 
             con.Close();
             return rows;
+        }
+
+        public int AddNewUser(User user)
+        {
+          return ExecuteDMLCommand("insert into tblUser values('"+user.UserName+"','"+user.Password+"','"+user.Email+"')");
+            
         }
         public List<Patient> GetAllPatients()
         {
@@ -61,42 +72,22 @@ namespace DoctorAppointmentWebApp.Models
         public int AddNewPatient(Patient patient)
         {
 
-            if (con.State == System.Data.ConnectionState.Closed)
-            {
-                con.Open();
-            }
-            com = new SqlCommand("insert into Patient values('" + patient.PatientName + "','" + patient.Email + "'," + patient.Contact + ",'" + patient.PatientHistory + "')", con);
-            int rows= com.ExecuteNonQuery();
-
-            con.Close();
-            return rows;
+            return ExecuteDMLCommand("insert into Patient values('" + patient.PatientName + "','" + patient.Email + "'," + patient.Contact + ",'" + patient.PatientHistory + "')");
+           
+            
 
         }
     public int UpdatePatient(Patient patient)
         {
-            if (con.State == System.Data.ConnectionState.Closed)
-            {
-                con.Open();
-            }
-            com = new SqlCommand("update patient set contact="+patient.Contact +"where patientId="+patient.PatientId, con);
-            int rows = com.ExecuteNonQuery();
-
-            con.Close();
-            return rows;
+        return   ExecuteDMLCommand("update patient set contact="+patient.Contact +"where patientId="+patient.PatientId);
+          
 
         }
 
         public int DeletePatient(int patientId)
         {
-            if (con.State == System.Data.ConnectionState.Closed)
-            {
-                con.Open();
-            }
-            com = new SqlCommand(" Delete from patient where patientId=" + patientId, con);
-            int rows = com.ExecuteNonQuery();
-
-            con.Close();
-            return rows;
+       return    ExecuteDMLCommand(" Delete from patient where patientId=" + patientId);
+        
         }
     }
 }

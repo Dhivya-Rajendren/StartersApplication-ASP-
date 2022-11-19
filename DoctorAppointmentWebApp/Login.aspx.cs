@@ -25,6 +25,7 @@ namespace DoctorAppointmentWebApp
             else
             {
                 Msg.Text = "Invalid UserName or Password";
+                Msg.CssClass = "text - danger alert alert-danger";
             }
 
         }

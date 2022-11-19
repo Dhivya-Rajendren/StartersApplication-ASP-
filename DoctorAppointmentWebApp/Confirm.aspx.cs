@@ -20,6 +20,8 @@ namespace DoctorAppointmentWebApp
         protected void Page_Load(object sender, EventArgs e)
         {
           
+            throw new NotImplementedException();
+
             List<Patient> allPatients = db.GetAllPatients();
              patientId = int.Parse(Request.QueryString["patientId"]);
             Patient patient = allPatients.Find(t=>t.PatientId==patientId);

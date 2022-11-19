@@ -25,7 +25,9 @@
             <div class="form-group">
                 <asp:Button ID="btnLogin" CssClass="btn btn-primary" runat="server" Text="Login" OnClick="btnLogin_Click"/>
             </div>
-                    <asp:Label ID="Msg" Text="" CssClass="text-danger alert alert-danger" runat="server" />
+
+           <h3 style="margin-top:50px">No Account ? Sign Up Here       <asp:LinkButton PostBackUrl="~/NewUser.aspx" CssClass="btn btn-success" runat="server" ID="lnkREgister" Text="Sign Up"/></h3>
+                     <asp:Label ID="Msg" Text=""  runat="server" />
 
         </div>
     </form>
